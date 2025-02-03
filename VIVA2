@@ -1,0 +1,85 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class Book {
+    String title;
+    String author;
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+}
+
+public class Main {
+    static Scanner sc = new Scanner(System.in); // Declare Scanner at class level
+    static ArrayList<Book> books = new ArrayList<>(); // Fix ArrayList declaration
+
+    public static void main(String[] args) {
+        int choice;
+
+        do {
+            System.out.println("Options Menu: ");
+            System.out.println("1. Add new book");
+            System.out.println("2. View book details");
+            System.out.println("3. Display all books");
+            System.out.println("4. Quit");
+            System.out.print("Your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    addBook();
+                    break;
+                case 2:
+                    viewBookDetails();
+                    break;
+                case 3:
+                    displayAllBooks();
+                    break;
+                case 4:
+                    System.out.println("Program ending...");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        } while (choice != 4);
+    }
+
+    public static void addBook() {
+        System.out.print("\nEnter book title: ");
+        String title = sc.nextLine();
+        System.out.print("Enter book author: ");
+        String author = sc.nextLine();
+        books.add(new Book(title, author));
+        System.out.println("book added successfully!");
+        System.out.println();
+    }
+
+    public static void viewBookDetails() {
+        System.out.print("Enter book title: ");
+        String title = sc.nextLine();
+
+        for (Book b : books) {
+            if (b.title.equalsIgnoreCase(title)) {
+                System.out.println("Title: " + b.title + ", Author: " + b.author);
+                System.out.println();
+                return;
+            }
+        }
+        System.out.println("Book not found!");
+    }
+
+    public static void displayAllBooks() {
+        if (books.isEmpty()) {
+            System.out.println("No books available.");
+            return;
+        }
+
+        for (Book b : books) {
+            System.out.println(b.title + " by " + b.author);
+        }
+        System.out.println();
+    }
+}
