@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Main
+{
+    public static void sumOfdigit(int number){
+        int sum=0;
+        do{
+            sum+=number%10;
+            number/=10;
+        }while(number>0);
+        number=sum;
+        
+        System.out.println("sum of digit: "+number);
+    }
+    
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		int number;
+		
+		do{
+		    System.out.print("Enter positive number: ");
+		    number = sc.nextInt();
+		    if(number<=10){
+		        System.out.println("Invalid input");
+		    }
+		
+		sumOfdigit(number);
+		System.out.println();
+		
+		
+		}while(number<=0);
+		
+		while(number>=10){
+		    int sum=0;
+		    do{
+		        sum+=number%10;
+		        number/=10;
+		    }while(number>0);
+		    
+		    number=sum;
+		}
+		System.out.println("Digital root: "+number);
+		
+	}
+}
